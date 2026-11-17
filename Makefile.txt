@@ -1,0 +1,11 @@
+ifneq ($(KERNELRELEASE),)
+obj-m := hello.o
+else
+KDIR ?= $(HOME)/linux-6.1.60
+
+all:
+	$(MAKE) -C $(KDIR) M=$$PWD modules
+
+clean:
+	$(MAKE) -C $(KDIR) M=$$PWD clean
+endif
